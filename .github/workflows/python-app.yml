@@ -1,0 +1,16 @@
+import telegram
+
+def handle_message(update, context):
+    text = update.message.text
+    if text == 'Hello':
+        update.message.reply_text('Доброго дня я допоможу вам підібрати вакансію!')
+
+def main():
+    bot = telegram.Bot(token='5181138374:AAE6mVeINCnEnunQoizpr6qYWTBAWSc0mWY')
+    updater = telegram.Updater(bot.token, use_context=True)
+    updater.dispatcher.add_handler(telegram.MessageHandler(telegram.Filters.text, handle_message))
+    updater.start_polling()
+    updater.idle()
+
+if __name__ == '__main__':
+    main()
